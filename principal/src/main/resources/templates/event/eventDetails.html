@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Detalhes</title>
+</head>
+<body>
+	<a href="/eventos">Voltar para eventos</a>
+		<table>
+			<thead>
+				<tr>
+					<th>Nome do evento</th>
+					<th>Local</th>
+					<th>Data</th>
+					<th>Horario</th>
+				</tr>
+			</thead>
+				
+		
+			
+		<tr th:each="event:${event}">
+		
+			<td><span th:text="${event.name}">Teste</span></td>
+			<td><span th:text="${event.local}">Teste</span></td>
+			<td><span th:text="${event.date}">Teste</span></td>
+			<td><span th:text="${event.schedule}">Teste</span></td>
+		
+		</tr>
+				
+	</table>
+
+	<form method="post">
+		<label>Nome</label>
+		<input type="text" name="name">
+		
+		<label>CPF</label>
+		<input type="text" name="cpf">
+
+		<input type="submit" value="Add guest">
+		
+	</form>
+	
+	<th:block th:include="event/mensagemValidacao"></th:block>
+		
+	<table>
+		<thead>
+			<tr>
+				<th>Nome</th>
+				<th>CPF</th>
+			</tr>
+		</thead>
+	
+		<tr th:each="guests:${guests}">
+			<td th:text="${guests.name}"><span></span></td>
+			<td th:text="${guests.cpf}"><span></span></td>
+			<td><a th:href="${(#mvc.url('EC#deleteGuest').arg(0, guests.guestId).build())}">Delete</a></td>
+		</tr>
+	</table>
+</body>
+</html>

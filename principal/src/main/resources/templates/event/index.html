@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta charset="ISO-8859-1">
+<title>Events</title>
+</head>
+<body>
+	<a href="/cadastrarEvento">Cadastrar Evento</a>
+	<a href="/events">Abrir lista de eventos</a>
+		<h2>LISTA DE EVENTOS</h2>
+
+			<table>
+				<thead>
+					<tr>
+						<th>Event Name</th>
+						<th>Local</th>
+						<th>Date</th>
+						<th>Schedule</th>
+					</tr>
+				</thead>
+				
+					<tr th:each="event:${event}">
+						<td><a th:href="${(#mvc.url('EC#eventDetails').arg(0, event.eventId).build())}"><span th:text="${event.name}"></span></a></td>
+						<td><span th:text="${event.local}"></span></td>
+						<td><span th:text="${event.schedule}"></span></td>
+						<td><span th:text="${event.date}"></span></td>
+						<td><a th:href="${(#mvc.url('EC#deletarEvento').arg(0, event.eventId).build())}">Delete</a></td>
+					</tr>
+			</table>
+
+</body>
+</html>
