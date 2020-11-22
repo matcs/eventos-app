@@ -62,26 +62,27 @@ public class EventController {
 	@PostMapping("/{eventId}")
 	public String postDetailsEvent(@PathVariable("eventId") int eventId,
 								   @Valid Guest guest, BindingResult result, RedirectAttributes ra) {
+
+		final String redirect = String.format("redirect:/%s", eventId);
+
 		if(result.hasErrors()) {
-			ra.addFlashAttribute("mensagem", "VERIFIQUE SE OS CAMPOS FORAM INSERIDOS CORRETAMENTE");
-			return "redirect:/{eventId}";
+			ra.addFlashAttribute("message", "MAKE SURE THE FIELDS HAVE BEEN COMPLETED CORRECTLY");
+			return redirect;
 		}
 		Event event = eventRepository.findByEventId(eventId);
 		guest.setEvent(event);
 		guestRepository.save(guest);
-		ra.addFlashAttribute("mensagem", "CONVIDADOS CADASTRADO COM SUCESSO");
-
-		final String redirect = String.format("redirect:/%s", eventId);
+		ra.addFlashAttribute("message", "SUCCESSFULLY REGISTERED GUEST");
 
 		return redirect;
 	}
 	
-	@RequestMapping("/deletarEv")
+	/*@RequestMapping("/deletarEv")
 	public String deletarEvento(int eventId) {
 		Event event = eventRepository.findByEventId(eventId);
 		eventRepository.delete(event);
 		return "redirect:/events";
-	}
+	}*/
 	
 	@RequestMapping("/deleteGuest")
 	public String deleteGuest(int guestId) {

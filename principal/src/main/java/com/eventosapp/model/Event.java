@@ -27,7 +27,7 @@ public class Event {
 	private LocalTime schedule;
 	
 	@OneToMany
-	private List<Guest> guest;
+	private List<Guest> guests;
 
 	public Event() { }
 
