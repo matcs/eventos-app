@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: eventsapp
+  mvc:
+    view:
+      prefix: templates
+      suffix: .jsp
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL57Dialect
+        format_sql: true
+    generate-ddl: true
+  jax:
+    enabled: false
+  datasource:
+    url: jdbc:mysql://localhost:3306/EVENTS_DB
+    username: root
+    password: password
+

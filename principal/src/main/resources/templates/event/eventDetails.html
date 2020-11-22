@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Detalhes</title>
+<title>Details</title>
 </head>
 <body>
-	<a href="/eventos">Voltar para eventos</a>
+	<a href="/events">Back to event list</a>
 		<table>
 			<thead>
 				<tr>
@@ -20,10 +20,10 @@
 			
 		<tr th:each="event:${event}">
 		
-			<td><span th:text="${event.name}">Teste</span></td>
-			<td><span th:text="${event.local}">Teste</span></td>
-			<td><span th:text="${event.date}">Teste</span></td>
-			<td><span th:text="${event.schedule}">Teste</span></td>
+			<td><span th:text="${event.name}">Name</span></td>
+			<td><span th:text="${event.local}">Local</span></td>
+			<td><span th:text="${event.date}">Date</span></td>
+			<td><span th:text="${event.schedule}">Schedule</span></td>
 		
 		</tr>
 				
@@ -40,7 +40,7 @@
 		
 	</form>
 	
-	<th:block th:include="event/mensagemValidacao"></th:block>
+	<th:block th:include="event/validationMessage"></th:block>
 		
 	<table>
 		<thead>
