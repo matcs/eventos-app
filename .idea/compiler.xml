@@ -7,14 +7,19 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="principal" />
+        <module name="events-app" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="eventapp" target="1.8" />
+      <module name="events-app" target="1.8" />
       <module name="principal" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="eventapp" options="-parameters" />
+      <module name="events-app" options="-parameters" />
       <module name="principal" options="-parameters" />
     </option>
   </component>

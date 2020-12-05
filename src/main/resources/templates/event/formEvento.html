@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta charset="ISO-8859-1">
+<title>Cadastrar Evento</title>
+</head>
+<body>
+	<a href="/events">Voltar para eventos</a>
+	
+	<form action="/registerEvent" method="post">
+		<label>Nome do Evento</label>
+		<input type="text" name="name"><br/>
+		
+		<label>Local</label>
+		<input type="text" name="local"><br/>
+		
+		<label>Data</label>
+		<input type="date" name="date"><br/>
+		
+		<label>Horario</label>
+		<input type="time" name="schedule"><br/>
+		
+		<input type="submit" value="Salvar">
+	</form>
+	
+	<th:block th:include="event/validationMessage"></th:block>
+	
+</body>
+</html>

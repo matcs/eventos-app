@@ -1,0 +1,43 @@
+version: '3'
+services:
+  eventapp:
+    container_name: eventapp
+    image: eventapp:0.0.1-SNAPSHOT
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    restart: on-failure
+    depends_on:
+      - mysql-db
+    networks:
+      eventapp-network:
+    environment:
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/EVENTS_DB?autoReconnect=true&useSSL=false
+      SPRING_DATASOURCE_DRIVER-CLASS-NAME: com.mysql.cj.jdbc.Driver
+      SPRING.JPA.PROPRIETIES.HIBERNATE.DIALECT:  org.hibernate.dialect.MySQL5InnoDBDialect
+      SPRING.JPA.SHOW-SQL: "true"
+      SPRING.JPA.GENERATE-DDL: "true"
+      SPRING.JPA.PROPRIETIES.HIBERNATE.SHOW_SQL: "true"
+      SPRING.JPA.PROPRIETIES.HIBERNATE.FORMAT_SQL: "true"
+    healthcheck:
+      test: "exit 0"
+
+  mysql-db:
+    container_name: mysql-eventapp-db
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    networks:
+      eventapp-network:
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_PASSWORD=password
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+      - MYSQL_DATABASE=EVENTS_DB
+
+networks:
+  eventapp-network:
